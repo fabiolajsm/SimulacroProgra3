@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "sabor": "frutilla",
+        "precio": "2000",
+        "tipo": "molde",
+        "cantidad": 2,
+        "ventas": [
+            {
+                "id": 1,
+                "numero_pedido": 0,
+                "email": "prueba@gmail.com",
+                "sabor": "frutilla",
+                "tipo": "molde",
+                "cantidad": "2",
+                "fecha": "2023-10-13 21:23:30"
+            },
+            {
+                "id": 2,
+                "numero_pedido": 1,
+                "email": "prueba@gmail.com",
+                "sabor": "frutilla",
+                "tipo": "molde",
+                "cantidad": "2",
+                "fecha": "2023-10-13 21:23:48"
+            }
+        ],
+        "numeroDePedido": 2
+    },
+    {
+        "id": 2,
+        "sabor": "frutilla",
+        "precio": "2000",
+        "tipo": "piedra",
+        "cantidad": 3,
+        "ventas": [
+            {
+                "id": 1,
+                "numero_pedido": 0,
+                "email": "prueba@gmail.com",
+                "sabor": "frutilla",
+                "tipo": "piedra",
+                "cantidad": "1",
+                "fecha": "2023-10-13 21:24:36"
+            }
+        ],
+        "numeroDePedido": 1
+    }
+]
