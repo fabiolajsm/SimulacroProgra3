@@ -28,16 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pizzaExists = true;
                 // Simular un número de pedido autoincremental
                 $numeroDePedido = 0;
-                if (isset($pizza['numeroDePedido'])) {
-                    $numeroDePedido = $pizza['numeroDePedido'];
+                if (isset($pizza['numeroDePedidos'])) {
+                    $numeroDePedido = $pizza['numeroDePedidos'];
                 }
-                $nuevoNumeroDePedido = $numeroDePedido;
-                $pizza['numeroDePedido'] = $numeroDePedido + 1;
+                $numeroDePedido++;
+                $pizza['numeroDePedidos'] = $numeroDePedido;
 
                 // Registrar la venta
                 $newSale = [
                     'id' => count($pizza['ventas']) + 1, // ID autoincremental de la venta
-                    'numero_pedido' => $nuevoNumeroDePedido, // Número de pedido
+                    'numeroDePedido' => $numeroDePedido, // Número de pedido
                     'email' => $email,
                     'sabor' => $sabor,
                     'tipo' => $tipo,
@@ -48,9 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pizza['cantidad'] -= $cantidad;
                 // Guardar en Pizza.json
                 file_put_contents($jsonFile, json_encode($pizzaData, JSON_PRETTY_PRINT));
-                echo 'Venta registrada con éxito.';
+                $imageName = $tipo . $sabor . strstr($email, '@', true) . date('YmdHis') . '.jpg';
+                $imagePath = 'ImagenesDeLaVenta/' . $imageName;
+
+                if (isset($_FILES['imagen']) && move_uploaded_file($_FILES['imagen']['tmp_name'], $imagePath)) {
+                    echo 'Venta registrada con éxito y la imagen se guardó correctamente.';
+                } else {
+                    echo 'Venta registrada con éxito, pero hubo un problema al guardar la imagen.';
+                }
             } else {
                 echo 'Error: No hay suficiente stock disponible.';
+                return;
             }
             break;
         }
