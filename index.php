@@ -3,9 +3,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'];
 
     switch ($action) {
-        case 'cargarPizza':
-            include('PizzaCarga.php');
-            break;
         case 'consultarPizza':
             include('PizzaConsultar.php');
             break;
