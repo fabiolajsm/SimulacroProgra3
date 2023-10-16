@@ -1,4 +1,6 @@
 <?php
+include 'ManejadorArchivos.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $sabor = $_GET['sabor'];
     $precio = $_GET['precio'];
@@ -10,52 +12,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         return;
     }
 
-    $jsonFile = 'Pizza.json';
-    $pizzaData = [];
-
-    // Verificar la validez del archivo JSON antes de intentar leerlo
-    if (file_exists($jsonFile)) {
-        $jsonData = file_get_contents($jsonFile);
-        $pizzaData = json_decode($jsonData, true);
-
-        if ($pizzaData === null) {
-            echo 'Error: el archivo JSON no es válido.';
-            return;
-        }
+    $archivoJson = 'Pizza.json';
+    $manejadorArchivos = new ManejadorArchivos($archivoJson);
+    $pizzaData = $manejadorArchivos->leer();
+    if (empty($pizzaData)) {
+        echo 'Error: el archivo JSON no es válido.';
+        return;
     }
-
     // Generar un identificador autoincremental emulado
     $maxId = 0;
     foreach ($pizzaData as $pizza) {
         $maxId = max($maxId, $pizza['id']);
     }
-    $newId = $maxId + 1;
+    $nuevoId = $maxId + 1;
 
-    $existingPizzaKey = -1;
+    $existeKeyEnPizza = -1;
     foreach ($pizzaData as $key => $pizza) {
         if ($pizza['sabor'] === $sabor && $pizza['tipo'] === $tipo) {
-            $existingPizzaKey = $key;
+            $existeKeyEnPizza = $key;
             break;
         }
     }
 
-    if ($existingPizzaKey >= 0) {
-        $pizzaData[$existingPizzaKey]['precio'] = $precio;
-        $pizzaData[$existingPizzaKey]['cantidad'] += $cantidad;
+    if ($existeKeyEnPizza >= 0) {
+        $pizzaData[$existeKeyEnPizza]['precio'] = $precio;
+        $pizzaData[$existeKeyEnPizza]['cantidad'] += $cantidad;
     } else {
-        $newPizza = [
-            'id' => $newId,
+        $nuevaPizza = [
+            'id' => $nuevoId,
             'sabor' => $sabor,
             'precio' => $precio,
             'tipo' => $tipo,
             'cantidad' => $cantidad
         ];
-        $pizzaData[] = $newPizza;
+        $pizzaData[] = $nuevaPizza;
     }
 
     // Guardar los datos actualizados en Pizza.json
-    file_put_contents($jsonFile, json_encode($pizzaData));
-
+    $manejadorArchivos->guardar($pizzaData);
     echo 'Datos actualizados con éxito.';
 } else {
     echo 'Método no permitido';

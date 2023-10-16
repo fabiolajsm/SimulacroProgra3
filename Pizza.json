@@ -1,46 +1,65 @@
 [
-    {
+  {
+    "id": 1,
+    "sabor": "frutilla",
+    "precio": "2000",
+    "tipo": "molde",
+    "cantidad": 4
+  },
+  {
+    "id": 2,
+    "sabor": "frutilla",
+    "precio": "2000",
+    "tipo": "piedra",
+    "cantidad": 2,
+    "ventas": [
+      {
         "id": 1,
+        "numeroDePedido": 1,
+        "email": "prueba@gmail.com",
         "sabor": "frutilla",
-        "precio": "2000",
-        "tipo": "molde",
-        "cantidad": 2
-    },
-    {
-        "id": 2,
-        "sabor": "frutilla",
-        "precio": "2000",
         "tipo": "piedra",
-        "cantidad": 0,
-        "ventas": [
-            {
-                "id": 1,
-                "numeroDePedido": 1,
-                "email": "prueba@gmail.com",
-                "sabor": "frutilla",
-                "tipo": "piedra",
-                "cantidad": "1",
-                "fecha": "2023-10-13 22:12:34"
-            },
-            {
-                "id": 2,
-                "numeroDePedido": 2,
-                "email": "prueba@gmail.com",
-                "sabor": "frutilla",
-                "tipo": "piedra",
-                "cantidad": "1",
-                "fecha": "2023-10-13 22:12:46"
-            },
-            {
-                "id": 3,
-                "numeroDePedido": 3,
-                "email": "prueba@gmail.com",
-                "sabor": "frutilla",
-                "tipo": "piedra",
-                "cantidad": "1",
-                "fecha": "2023-10-13 22:14:49"
-            }
-        ],
-        "numeroDePedidos": 3
-    }
+        "cantidad": "1",
+        "fecha": "2023-10-13 22:12:34"
+      },
+      {
+        "id": 2,
+        "numeroDePedido": 2,
+        "email": "prueba@gmail.com",
+        "sabor": "frutilla",
+        "tipo": "piedra",
+        "cantidad": "1",
+        "fecha": "2023-10-13 22:12:46"
+      },
+      {
+        "id": 3,
+        "numeroDePedido": 3,
+        "email": "prueba@gmail.com",
+        "sabor": "frutilla",
+        "tipo": "piedra",
+        "cantidad": "1",
+        "fecha": "2023-10-13 22:14:49"
+      }
+    ],
+    "numeroDePedidos": 3
+  },
+  {
+    "id": 3,
+    "sabor": "chocolate",
+    "precio": "2000",
+    "tipo": "molde",
+    "cantidad": 1,
+    "ventas": [
+      {
+        "id": 1,
+        "numeroDePedido": 1,
+        "email": "prueba@gmail.com",
+        "sabor": "chocolate",
+        "tipo": "molde",
+        "cantidad": "1",
+        "fecha": "2023-10-16 15:57:11"
+      }
+    ],
+    "numeroDePedidos": 1
+  }
 ]

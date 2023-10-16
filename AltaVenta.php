@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pizzaData = $manejadorArchivos->leer();
     if (empty($pizzaData)) {
         echo 'Error: el archivo JSON no es válido.';
+        return;
     }
 
     $pizzaExists = false;
