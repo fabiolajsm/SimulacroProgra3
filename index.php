@@ -9,6 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'altaVenta':
             include('AltaVenta.php');
             break;
+        case 'consultarVentas':
+            include('ConsultasVentas.php');
+            break;
         default:
             echo 'Acción no válida';
     }
